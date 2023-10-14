@@ -1,42 +1,123 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+html,
+body {
+  background-color: #242424 !important;
+}
+.weatherAppBody {
+  display: flex;
+  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+}
+.searchSection {
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+}
+.cityInput {
+  width: 100%;
+  border-radius: 3rem;
+  padding-left: 1rem;
+  font-size: medium;
+  font-weight: bold;
+}
+.bodyWeather {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.panelLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background-color: #ffffff;
+  color: #000000;
+  border-style: solid;
+  border-radius: 1rem;
+  height: 18rem;
+}
+.panelRight {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  background-color: #ffffff;
+  border-style: solid;
+  border-radius: 1rem;
+  overflow: scroll;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  height: 21rem;
+}
+.panelForDateOfWeekWeather {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.panelForDayofWeekWeather {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dayOfWeekPanel {
+  display: flex;
+  flex-wrap: wrap;
+  border: #000000;
+  border-style: solid;
+  border-radius: 0.5rem;
+}
+.titleDayOfWeek {
+  text-align: center;
+  text-transform: capitalize;
+}
+.city {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+  width: 100%;
+}
+.cityName {
   text-align: center;
 }
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.cityMoment {
+  text-align: right;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.iconSearch {
+  font-size: large;
+  font-weight: bold;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.iconWeather {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.todayIcon {
+  width: 10rem;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.temperature {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
 }
-
-.card {
-  padding: 2em;
+.daylyWeather {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-.read-the-docs {
-  color: #888;
+.dailyDate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dailyTemp {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
 }
