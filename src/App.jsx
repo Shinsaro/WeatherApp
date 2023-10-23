@@ -32,7 +32,12 @@ function App() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleShowPanel = () => setShowPanel(false);
-
+  function getWeatherFromCurrentlocaiton() {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      setTimeZone(navigator.language);
+      getWeatherInfo(position.coords.latitude, position.coords.longitude);
+    });
+  }
   function getContryLatAndLong(cityInput) {
     fetch("https://geocoding-api.open-meteo.com/v1/search?name=" + cityInput)
       .then((response) => response.json())
@@ -49,7 +54,6 @@ function App() {
       });
   }
   function getWeatherInfo(latitude, longitude) {
-    setTemperature("loading...");
     const weatherData = async () => {
       return await fetch(
         "https://api.open-meteo.com/v1/forecast?latitude=" +
@@ -95,6 +99,7 @@ function App() {
       setTemperatures(arrayListTemperatures);
       setDays(arrayListDates);
       setIcons(arrayIcons);
+      handleShowPanel();
     });
   }
   return (
@@ -127,7 +132,6 @@ function App() {
                   setCity(cityInput);
                   getContryLatAndLong(cityInput);
                   handleClose();
-                  handleShowPanel();
                 }}
               >
                 Search
@@ -135,18 +139,36 @@ function App() {
             </Modal.Footer>
           </Modal>
         </div>
-        <Col className="panelLeft" xs={12} md={12} lg={12} xxl={12}>
+        <Col xs={12} xl={12} xxl={12}>
+          <Row xs={12} md={12} lg={12} xxl={12}>
+            <h1 className="title">Wanna know the weather?</h1>
+          </Row>
+          <Col className="parentIconSearch" xs={12} md={12} lg={12} xxl={12}>
+            <Icon.GeoAltFill
+              className="iconCurrentLocation"
+              onClick={getWeatherFromCurrentlocaiton}
+            />
+          </Col>
+        </Col>
+        <Col
+          hidden={showPanel}
+          className="panelLeft"
+          xs={12}
+          md={12}
+          lg={12}
+          xxl={12}
+        >
           <Row className="city">
             <Col>
               <Icon.Search className="iconSearch" onClick={handleShow} />
-            </Col>{" "}
+            </Col>
             <Col className="cityName">{city}</Col>
             <Col className="cityMoment" hidden={showPanel}>
               NOW
             </Col>
           </Row>
           <Row>
-            <Col xs={3} md={3} lg={3} xl={3} xxl={3}>
+            <Col xs={5} md={3} lg={3} xl={3} xxl={3}>
               <Row>
                 <div className="iconWeather">
                   <img
@@ -161,17 +183,16 @@ function App() {
                 {unitTemperature}
               </Row>
             </Col>
-            <Col xs={3} md={3} lg={3} xl={3} xxl={3}>
-              <Row hidden={showPanel} xs={12}>
+            <Col xs={5} md={3} lg={3} xl={3} xxl={3}>
+              <Row xs={12}>
                 Wind Speed : {windSpeed}
                 {windSpeedUnit}
               </Row>
-              <Row hidden={showPanel} xs={12}>
+              <Row xs={12}>
                 Wind Direction : {windDirection}
                 {windDirectionUnit}
               </Row>
             </Col>
-            <Col xs={3}></Col>
           </Row>
         </Col>
         <Col className="panelRight" hidden={showPanel} xs={12} md={12}>
